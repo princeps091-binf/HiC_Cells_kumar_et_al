@@ -7,6 +7,7 @@ library(dplyr)
 library(data.table)
 options(scipen=999999999)
 ##############################################################
+# funtion to extract the three column (sparse matrix) format table for Hi-C data
 df_out<-function(test_aws,res=25000){
   chr_bins<-unique(c(test_aws$X1,test_aws$X2))
   #include gaps in the heatmap
@@ -21,12 +22,14 @@ df_out<-function(test_aws,res=25000){
 
 
 #############################################################
+# Helped function to retrieve the path to root in growing tree
 ff = function(x){ 
   if (class(x) == "list" & length(x)>0) 
     lapply(x, ff) 
   else 
     TRUE
 }
+# Recursive Louvain clustering
 cl_bipart<-function(g_chr1){
   options(scipen=999999999)
   #initialisation
@@ -94,6 +97,7 @@ chr_set<-paste0("chr",1:19)
 
 for(i in chr_set){
   print(paste('load',i,'data'))
+  # Import the Hi-C data for cell stages considered
   chr_CN<-read_delim(paste0("~/../../media/vipin/DISQUEDUR/research_associate_project/HIC_OE_compare/data/CN/",i,".txt"),"\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
   chr_ES<-read_delim(paste0("~/../../media/vipin/DISQUEDUR/research_associate_project/HIC_OE_compare/data/ES/",i,".txt"),"\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
   chr_NPC<-read_delim(paste0("~/../../media/vipin/DISQUEDUR/research_associate_project/HIC_OE_compare/data/NPC/",i,".txt"),"\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
