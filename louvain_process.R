@@ -22,7 +22,7 @@ df_out<-function(test_aws,res=25000){
 
 
 #############################################################
-# Helped function to retrieve the path to root in growing tree
+# Helper function to retrieve the path to root in growing tree
 ff = function(x){ 
   if (class(x) == "list" & length(x)>0) 
     lapply(x, ff) 
