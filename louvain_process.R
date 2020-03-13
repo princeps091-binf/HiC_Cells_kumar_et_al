@@ -7,7 +7,7 @@ library(dplyr)
 library(data.table)
 options(scipen=999999999)
 ##############################################################
-# funtion to extract the three column (sparse matrix) format table for Hi-C data
+# function to extract the three column (sparse matrix) format table for Hi-C data
 df_out<-function(test_aws,res=25000){
   chr_bins<-unique(c(test_aws$X1,test_aws$X2))
   #include gaps in the heatmap
